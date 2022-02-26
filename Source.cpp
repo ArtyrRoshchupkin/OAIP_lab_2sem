@@ -6,7 +6,7 @@
 #include<stdio.h>
 
 using namespace std;
-struct STUDENTS 
+struct STUDENTS
 {
 
     char lastname;
@@ -15,22 +15,47 @@ struct STUDENTS
 
 };
 
-void Create(FILE* file, char name[255]);
 
-void Read(FILE* file, char name[255]);
+int main()
+{
+    int index = 0, m;
+    char name[255];
 
-void Add(FILE* file, char name[255]);
-
-void Task(FILE* file, char name[255]);
+    FILE* file = NULL;
+    while (true) {
+        cout << "Введите название файла\n";
+        cin >> name;
+        cout << "Выберите:\n1)Создать файл\n2)Просмотреть файл\n3)Добавить\n4)Найти студентов из определенной группы с определенным средним баллом"
+            << "\n0)выйти из программы\n";
+        cin >> index;
+        switch (index)
+        {
+        case 1:
+            SetConsoleCP(1251);
+            Create(file, name);
+            SetConsoleCP(866);
+            break;
+        default:
+        case 2:
+            Read(file, name);
+            break;
+        case 3:
+            Add(file, name);
+            break;
+        case 4:
+            Task(file, name);
+            break;
+        case 0:
+            return 0;
+            break;
+        }
+    }
+}
 
 
 
 STUDENTS In();
 
-int main() 
-{
-    
-}
 
 void Create(FILE* file, char name[255])
 {
@@ -54,13 +79,13 @@ void Read(FILE* file, char name[255])
     STUDENTS h;
     fopen_s(&file, name, "rb");
 
-    if (file!=NULL)
+    if (file != NULL)
     {
         cout << " Group Surname Phisics Math Informatics GPA\n";
-    
+
         while (fread(&h, sizeof(STUDENTS), 1, file))
         {
-            cout << " "<< h.n <<" " << h.lastname << " " << h.f << " " << h.m << " " << h.i << " "  << h.sr << endl;
+            cout << " " << h.n << " " << h.lastname << " " << h.f << " " << h.m << " " << h.i << " " << h.sr << endl;
             cout << endl;
         }
     }
@@ -81,7 +106,7 @@ void Add(FILE* file, char name[255])
     for (int i = 0; i < k; i++)
     {
         h = In();
-        fwrite(&h, sizeof(STUDENTS), 1, file);        
+        fwrite(&h, sizeof(STUDENTS), 1, file);
     }
     fclose(file);
 }
@@ -89,13 +114,14 @@ void Add(FILE* file, char name[255])
 void Task(FILE* file, char name[255])
 {
     STUDENTS h;
+    int n;
     fopen_s(&file, name, "");
     cout << "enter number of group";
     cin >> n;
 
-    if (g.sr>=9)
+    if (h.sr >= 9)
     {
-        cout << "student: " << h.lastname<<"fizics mark_"<<h.f <<"math mark_"<<h.m<<"informatics mark"<<h.i<<"average mark"<<h.sr<<endl;
+        cout << "student: " << h.lastname << "fizics mark_" << h.f << "math mark_" << h.m << "informatics mark" << h.i << "average mark" << h.sr << endl;
     }
     else
     {
@@ -118,6 +144,6 @@ STUDENTS In()
     cin >> g.f;
     cout << "enetr informatic mark\n";
     cin >> g.i;
-    g.sr = (g.m+g.f+g.i) / 3.;
+    g.sr = (g.m + g.f + g.i) / 3.;
     return g;
 }
