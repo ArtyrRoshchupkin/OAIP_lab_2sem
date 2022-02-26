@@ -90,6 +90,18 @@ void Task(FILE* file, char name[255])
 {
     STUDENTS h;
     fopen_s(&file, name, "");
+    cout << "enter number of group";
+    cin >> n;
+
+    if (g.sr>=9)
+    {
+        cout << "student: " << h.lastname<<"fizics mark_"<<h.f <<"math mark_"<<h.m<<"informatics mark"<<h.i<<"average mark"<<h.sr<<endl;
+    }
+    else
+    {
+        cout << "no perfect students in this group";
+    }
+
     fclose(file);
 }
 
