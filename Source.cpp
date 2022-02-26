@@ -15,6 +15,11 @@ struct STUDENTS
 
 };
 
+void Create(FILE* file, char name[255]);
+void Read(FILE* file, char name[255]);
+void Add(FILE* file, char name[255]);
+void Task(FILE* file, char name[255]);
+STUDENTS In();
 
 int main()
 {
@@ -51,10 +56,6 @@ int main()
         }
     }
 }
-
-
-
-STUDENTS In();
 
 
 void Create(FILE* file, char name[255])
